@@ -282,7 +282,23 @@ $ git worktree list
 | `git worktree prune`  | orphan 데이터 정리 | `git worktree prune`                       |
 | `git worktree lock`   | 삭제 방지         | `git worktree lock ../review`              |
 
+
+| 명령어                                         | 설명                                 | 예시                                         |
+| ------------------------------------------- | ---------------------------------- | ------------------------------------------ |
+| `git worktree add <path> <branch>`          | 지정한 경로에 새로운 worktree 생성 + 브랜치 체크아웃 | `git worktree add ../featureA feature/A`   |
+| `git worktree add -b <new-branch> <path>`   | 새 브랜치를 생성하고 해당 worktree에서 checkout | `git worktree add -b fix/bug123 ../bugfix` |
+| `git worktree list`                         | 현재 repo에 연결된 모든 worktree 목록 표시     | `git worktree list`                        |
+| `git worktree remove <path>`                | 특정 worktree 삭제 (파일 삭제 + 관리 목록 제거)  | `git worktree remove ../featureA`          |
+| `git worktree prune`                        | 삭제되었으나 목록에 남은 “죽은” worktree 기록 정리  | `git worktree prune`                       |
+| `git worktree lock <path>`                  | worktree를 잠그고 prune되지 않도록 보호       | `git worktree lock ../release`             |
+| `git worktree unlock <path>`                | 잠금 해제                              | `git worktree unlock ../release`           |
+| `git worktree repair`                       | worktree 메타데이터가 손상된 경우 복구          | `git worktree repair`                      |
+| `git worktree move <old> <new>` (Git 2.19+) | worktree 위치 이동                     | `git worktree move ../a ../b`              |
+
+
 ---
+
+
 
 ### ✨ 간단한 사용 예시
 
