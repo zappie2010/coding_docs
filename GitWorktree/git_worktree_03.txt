@@ -99,4 +99,52 @@ Cursor는 `git worktree`를
 * Worktree 자동 관리 → 리소스 최적화
 * Best-of-N → 모델별 품질 비교 및 결과 통합
 
+```
+{
+  "setup-worktree": [
+    "npm ci",
+    "cp $ROOT_WORKTREE_PATH/.env .env"
+  ]
+}
 
+{
+  "setup-worktree": [
+    "python -m venv venv",
+    "source venv/bin/activate && pip install -r requirements.txt",
+    "cp $ROOT_WORKTREE_PATH/.env .env"
+  ]
+}
+
+{
+  "setup-worktree": [
+    "npm ci",
+    "cp $ROOT_WORKTREE_PATH/.env .env",
+    "npm run db:migrate"
+  ]
+}
+
+{
+  "setup-worktree-unix": "setup-worktree-unix.sh",
+  "setup-worktree-windows": "setup-worktree-windows.ps1",
+  "setup-worktree": [
+    "echo '범용 대체 방법을 사용 중입니다. 더 나은 지원을 위해 OS별 스크립트를 정의하세요.'"
+  ]
+}
+```
+
+스크립트를 worktrees.json와 함께 .cursor/ 디렉터리에 놓으세요:
+```
+#!/bin/bash
+set -e
+
+# 종속성 설치
+npm ci
+
+# 환경 파일 복사
+cp "$ROOT_WORKTREE_PATH/.env" .env
+
+# 데이터베이스 마이그레이션 실행
+npm run db:migrate
+
+echo "Worktree 설정 완료!"
+```
